@@ -646,6 +646,8 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   ballPrefab: {fileID: 5518922884829715111, guid: 716a2b7fa5279a44396d5e8bcfdd2bbf,
     type: 3}
+  cubePrefab: {fileID: 4949723369756273455, guid: db534012c55440f41a6cdbf7b28f284a,
+    type: 3}
 --- !u!1 &1024448483
 GameObject:
   m_ObjectHideFlags: 0

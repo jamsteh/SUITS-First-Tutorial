@@ -10,6 +10,7 @@ public class CameraControl : MonoBehaviour
     public Camera mainCamera;
 
     public GameObject ballPrefab;
+    public GameObject cubePrefab;
 
     void Start()
     {
@@ -62,12 +63,29 @@ public class CameraControl : MonoBehaviour
 
         // Mouse control
         if (Input.GetMouseButtonDown(0)) // Left click
+        {/*
+            RaycastHit hit;
+            Ray ballRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ballRay, out hit))
+            {
+                Instantiate(ballPrefab, hit.point + Vector3.Normalize(hit.normal), transform.rotation);
+            }
+        */
+            RaycastHit hit;
+            Ray ballRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ballRay, out hit))
+            {
+                Instantiate(cubePrefab, hit.point + Vector3.Normalize(hit.normal), Quaternion.LookRotation(hit.normal));
+            }
+        }
+
+        if (Input.GetMouseButton(2))
         {
             RaycastHit hit;
             Ray ballRay = mainCamera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ballRay, out hit))
             {
-                Instantiate(ballPrefab, hit.point + Vector3.up, transform.rotation);
+                Instantiate(cubePrefab, hit.point + Vector3.Normalize(hit.normal), Quaternion.LookRotation(hit.normal));
             }
         }
     }
