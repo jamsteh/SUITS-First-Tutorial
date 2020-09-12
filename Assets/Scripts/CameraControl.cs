@@ -7,8 +7,14 @@ public class CameraControl : MonoBehaviour
     public float mouseSensitivity = 1;
     public float cameraSpeed = 10;
     public float clampAngle = 80;
+    public Camera mainCamera;
 
     public GameObject ballPrefab;
+
+    void Start()
+    {
+        mainCamera = Camera.main;
+    }
 
     // FixedUpdate for the move
     void Update()
@@ -57,7 +63,12 @@ public class CameraControl : MonoBehaviour
         // Mouse control
         if (Input.GetMouseButtonDown(0)) // Left click
         {
-            // Add stuff here
+            RaycastHit hit;
+            Ray ballRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ballRay, out hit))
+            {
+                Instantiate(ballPrefab, hit.point + Vector3.up, transform.rotation);
+            }
         }
     }
 }
